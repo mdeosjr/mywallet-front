@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
 const Form = styled.div`
-    margin-top: 150px;
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -55,8 +55,11 @@ const Button = styled.button`
 `;
 
 const StyledLink = styled(Link)`
+    all: unset;
     font: bold 15px 'Raleway';
     line-height: 18px;
+
+    cursor: pointer;
 
     color: #FFFFFF;
 `;

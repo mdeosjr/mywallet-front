@@ -1,0 +1,61 @@
+import { useState } from 'react';
+import logo from '../../assets/images/MyWallet.svg';
+import { Form, StyledLink, Input, Button } from '../../components/Form';
+
+function RegisterPage() {
+  const [userData, setUserData] = useState({
+      email: '',
+      name: '',
+      password: ''
+  })
+  const [button, setButton] = useState(true);
+  const [input, setInput] = useState(true);
+
+  function handleInput(e) {
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
+
+  return (
+    <Form>
+        <img src={logo} alt="logo"></img>
+        <form>
+            <Input
+              ativo={input} 
+              type="text" 
+              placeholder="Nome" 
+              name="name"
+              onChange={handleInput}
+              value={userData.name}
+            />
+            <Input 
+              ativo={input}
+              type="email" 
+              placeholder="E-mail" 
+              name="email"
+              onChange={handleInput}
+              value={userData.email}
+            />
+            <Input 
+              ativo={input}
+              type="password" 
+              placeholder="Senha" 
+              name="password"
+              onChange={handleInput}
+              value={userData.password}
+            />
+            <Input 
+              ativo={input}
+              type="password" 
+              placeholder="Confirme sua senha" 
+              name="passwordConfirm"
+              onChange={handleInput}
+              value={userData.passwordConfirm}
+            />
+            <Button>Cadastrar</Button>
+        </form>
+        <StyledLink to="/">Já tem uma conta? Entre agora!</StyledLink>
+    </Form>
+  );
+}
+
+export default RegisterPage;
