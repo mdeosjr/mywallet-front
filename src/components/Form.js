@@ -24,16 +24,20 @@ const Form = styled.div`
 
 const Input = styled.input`
     all: unset;
+
     width: 326px;
     height: 58px;
+    padding-left: 16px;
+    box-sizing: border-box;
+
     background: ${props => props.ativo ? '#FFFFFF' : '#F2F2F2'};
     border-radius: 5px;
+    font: normal 20px 'Raleway';
     color: ${props => props.ativo ? '#000000' : '#AFAFAF'};
     ${props => !props.ativo && "pointer-events: none;"}
     &::placeholder {
         font: normal 20px 'Raleway';
         line-height: 23px;
-        padding-left: 16px;
     
         color: #000000;
     }

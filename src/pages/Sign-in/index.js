@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, StyledLink, Input, Button } from '../../components/Form';
 import logo from '../../assets/images/MyWallet.svg';
 
-function LoginPage() {
+function SignInPage() {
   const [button, setButton] = useState(true);
   const [input, setInput] = useState(true);
   const [email, setEmail] = useState('');
@@ -30,9 +30,9 @@ function LoginPage() {
             />
             <Button>Entrar</Button>
         </form>
-        <StyledLink to="/register">Primeira vez? Cadastre-se!</StyledLink>
+        <StyledLink to="/sign-up">Primeira vez? Cadastre-se!</StyledLink>
     </Form>
   );
 }
 
-export default LoginPage;
+export default SignInPage;

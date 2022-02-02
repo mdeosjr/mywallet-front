@@ -2,7 +2,7 @@ import { useState } from 'react';
 import logo from '../../assets/images/MyWallet.svg';
 import { Form, StyledLink, Input, Button } from '../../components/Form';
 
-function RegisterPage() {
+function SignUpPage() {
   const [userData, setUserData] = useState({
       email: '',
       name: '',
@@ -58,4 +58,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default SignUpPage;
