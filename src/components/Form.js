@@ -22,6 +22,20 @@ const Form = styled.div`
     }
 `;
 
+const FormMovs = styled.div`
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 36px;
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+    }
+`;
+
 const Input = styled.input`
     all: unset;
 
@@ -70,6 +84,7 @@ const StyledLink = styled(Link)`
 
 export {
     Form,
+    FormMovs,
     StyledLink,
     Input,
     Button
