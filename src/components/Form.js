@@ -61,11 +61,13 @@ const Button = styled.button`
     all: unset;
     width: 326px;
     height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #A328D6;
     border-radius: 5px;
     font: bold 20px 'Raleway';
     line-height: 23px;
-    text-align: center;
     color: #FFFFFF;
     cursor: pointer;
     ${props => !props.ativo && "pointer-events: none;"}

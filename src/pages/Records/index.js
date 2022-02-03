@@ -1,23 +1,33 @@
-import { Title, Container, Registry, BankMovs } from '../../components'
+import { Title, Container, Registry, BankMovs } from '../../components';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserContext from '../../contexts/userContext';
 import exit from '../../assets/images/Vector.svg';
 import entry from '../../assets/images/entry.svg';
 import debt from '../../assets/images/debt.svg';
 
 function RecordsPage() {
+    const { user } = useContext(UserContext)
+    let navigate = useNavigate();
+
+    function toLoginPage() {
+        navigate("/");
+    }
+
     return (
         <Container>
             <Title>
-                <h1>Olá, Fulano</h1>
-                <img src={exit} alt="Sair"></img>
+                <h1>Olá, {user.name}</h1>
+                <img onClick={toLoginPage} src={exit} alt="Sair"></img>
             </Title>
             <Registry>Não há registros de <br></br> entrada ou saída</Registry>
             <div className="movements">
-                <BankMovs>
-                    <img src={entry} alt="Sair"></img>
+                <BankMovs to="/entry-page">
+                    <img src={entry} alt="Entrada"></img>
                     Nova<br></br>entrada
                 </BankMovs>
-                <BankMovs>
-                    <img src={debt} alt="Sair"></img>
+                <BankMovs to="/debt-page">
+                    <img src={debt} alt="Saída"></img>
                     Nova<br></br>saída
                 </BankMovs>
             </div>

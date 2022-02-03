@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
-const BankMovs = styled.button`
+const BankMovs = styled(Link)`
     all: unset;
     width: 155px;
     height: 114px;
