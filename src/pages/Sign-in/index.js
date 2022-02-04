@@ -12,7 +12,7 @@ function SignInPage() {
   const [input, setInput] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   const { setUser } = useContext(UserContext)
 
   function login(e) {
