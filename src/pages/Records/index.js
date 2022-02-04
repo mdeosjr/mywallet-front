@@ -13,6 +13,7 @@ function RecordsPage() {
     const [userData, setUserData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     let navigate = useNavigate();
+    let balanceValue = 0;
 
     function toLoginPage() {
         navigate("/");
@@ -21,12 +22,26 @@ function RecordsPage() {
     function loadRecords() {
         api.getRecords(user.token).then(response => {
             setUserData(response.data);
-            console.log(response.data);
             setIsLoading(false);
         })
     };
 
     useEffect(() => {loadRecords()}, []);
+
+    if (isLoading) {
+        return <span>Carregando...</span>
+    }
+
+    for (const record of userData) {
+        if (record.type === 'entry') {
+            balanceValue += parseFloat(record.value)
+        }
+
+        if (record.type === 'debt') {
+            balanceValue -= parseFloat(record.value)
+        }
+    }
+
 
     return (
         <Container>
@@ -34,28 +49,34 @@ function RecordsPage() {
                 <h1>Olá, {user.name}</h1>
                 <img onClick={toLoginPage} src={exit} alt="Sair"></img>
             </Title>
-            <Registry>
-            {isLoading ? <span>Carregando...</span> : 
-                (userData.length === 0 ? <span>Não há registros de<br></br>entrada ou saída</span>
-                :
-                userData.reverse().map(record => 
+            <Registry balance={balanceValue}>
+            {
+            userData.length === 0 ? <span>Não há registros de<br/>entrada ou saída</span>
+            :
+            <>
+            {userData.reverse().map(record => 
                     <Record type={record.type}>
                         <div className="notValues">
                             <p className="date">{record.date}</p> 
                             <p className="description">{record.description}</p>
                         </div>
-                        <p className="value">{record.value}</p>
-                    </Record>))
+                        <p className="value">{parseFloat(record.value).toFixed(2)}</p>
+                    </Record>)}
+                    <div className="registryFooter">
+                        <p className="balance">SALDO</p>
+                        <p className="balanceValue">{parseFloat(balanceValue).toFixed(2)}</p>
+                    </div>
+            </>
             }
             </Registry>
             <div className="movements">
                 <BankMovs onClick={() => navigate("/entry-page")}>
                     <img src={entry} alt="Entrada"></img>
-                    Nova<br></br>entrada
+                    Nova<br/>entrada
                 </BankMovs>
                 <BankMovs onClick={() => navigate("/debt-page")}>
                     <img src={debt} alt="Saída"></img>
-                    Nova<br></br>saída
+                    Nova<br/>saída
                 </BankMovs>
             </div>
         </Container>

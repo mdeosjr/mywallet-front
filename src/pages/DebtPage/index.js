@@ -68,6 +68,18 @@ function EntryPage() {
                             height={35} width={35} 
                         />}
                     </Button>
+                    <Button 
+                        type="button"
+                        onClick={() => navigate("/records")}
+                        ativo={button}
+                    >
+                        {button ? "Voltar" 
+                        : 
+                        <TailSpin 
+                            color="#FFFFFF" 
+                            height={35} width={35} 
+                        />}
+                    </Button>
                 </form>
             </FormMovs>
         </Container>

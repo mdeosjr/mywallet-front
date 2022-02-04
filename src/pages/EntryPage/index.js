@@ -31,7 +31,6 @@ function EntryPage() {
 
         const promise = api.postRegistry(registryData, user.token);
         promise.then(() => navigate("/records"))
-        promise.catch(error => console.log(error))
     }
     
     return (
@@ -62,6 +61,18 @@ function EntryPage() {
                         ativo={button}
                     >
                         {button ? "Salvar entrada" 
+                        : 
+                        <TailSpin 
+                            color="#FFFFFF" 
+                            height={35} width={35} 
+                        />}
+                    </Button>
+                    <Button 
+                        type="button"
+                        onClick={() => navigate("/records")}
+                        ativo={button}
+                    >
+                        {button ? "Voltar" 
                         : 
                         <TailSpin 
                             color="#FFFFFF" 

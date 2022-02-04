@@ -9,6 +9,7 @@ const Registry = styled.div`
     display: flex;
     flex-direction: column;
     gap: 18px;
+    position: relative;
 
     background: #FFFFFF;
     border-radius: 5px;
@@ -21,6 +22,29 @@ const Registry = styled.div`
 
     span {
         margin: auto;
+    }
+
+    .balance {
+        font: bold 17px 'Raleway';
+        line-height: 20px;
+
+        color: #000000;
+    }
+
+    .balanceValue {
+        font: normal 17px 'Raleway';
+        line-height: 20px;
+
+        color: ${props => props.balance > 0 ? '#03AC00' : '#C70000'};
+    }
+
+    .registryFooter {
+        display: flex;
+        justify-content: space-between;
+        width: 93%;
+
+        position: absolute;
+        bottom: 12px;
     }
 `
 
