@@ -4,7 +4,7 @@ import { Form, StyledLink, Input, Button } from '../../components/Form';
 import { TailSpin } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import logo from '../../assets/images/MyWallet.svg';
-import axios from 'axios';
+import api from '../../services/api';
 
 function SignUpPage() {
   const [userData, setUserData] = useState({
@@ -35,10 +35,7 @@ function SignUpPage() {
       return;
     };
 
-    const promise = 
-      axios.post('http://localhost:5000/sign-up',
-        {...userData}
-      )
+    const promise = api.handleSignUp({...userData})
     
     setButton(false);
     setInput(false);

@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Form, StyledLink, Input, Button } from '../../components/Form';
 import { TailSpin } from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import axios from 'axios';
 import logo from '../../assets/images/MyWallet.svg';
-import UserContext from '../../contexts/userContext'
+import UserContext from '../../contexts/userContext';
+import api from '../../services/api';
 
 function SignInPage() {
   const [button, setButton] = useState(true);
@@ -18,10 +18,7 @@ function SignInPage() {
   function login(e) {
     e.preventDefault();
 
-    const promise = axios.post('http://localhost:5000/sign-in', { 
-      email,
-      password
-    })
+    const promise = api.handleLogin({email, password})
 
     setButton(false);
     setInput(false);
@@ -68,8 +65,7 @@ function SignInPage() {
               ativo={button}>
               {button ? "Entrar" 
                 : 
-                <TailSpin 
-                  type="ThreeDots" 
+                <TailSpin  
                   color="#FFFFFF" 
                   height={35} width={35} 
                 />}

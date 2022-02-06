@@ -23,7 +23,10 @@ function RecordsPage({setPage}) {
         api.getRecords(user.token).then(response => {
             setUserData(response.data);
             setIsLoading(false);
-        })
+        }).catch(() => {
+            alert("Usuário e/ou senha incorretos!");
+            navigate("/");
+        });
     };
 
     function toMoveRecords(type) {
@@ -34,7 +37,7 @@ function RecordsPage({setPage}) {
     useEffect(() => {loadRecords()}, []);
 
     if (isLoading) {
-        return <span>Carregando...</span>
+        return <h1>Carregando...</h1>
     }
 
     for (const record of userData) {
