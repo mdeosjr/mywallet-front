@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import api from '../../services/api';
 import UserContext from '../../contexts/userContext';
 
-function EntryPage() {
+function MovementPage({page}) {
     const [value, setValue] = useState('');
     const [description, setDescription] = useState('');
     const [input, setInput] = useState(true);
@@ -19,11 +19,11 @@ function EntryPage() {
     const registryData = ({
         value: value,
         description: description,
-        type: 'debt',
+        type: page,
         date: dayjs().format('DD/MM')
     });
 
-    function saveDebt(e) {
+    function saveMove(e) {
         e.preventDefault();
 
         setInput(false);
@@ -31,16 +31,15 @@ function EntryPage() {
 
         const promise = api.postRegistry(registryData, user.token);
         promise.then(() => navigate("/records"))
-        promise.catch(error => console.log(error))
     }
     
     return (
         <Container>
             <Title>
-                <h1>Nova entrada</h1>
+                <h1>Nova {page === 'entry' ? 'entrada' : 'saída'}</h1>
             </Title>
             <FormMovs>
-                <form onSubmit={saveDebt}>
+                <form onSubmit={saveMove}>
                     <Input
                         ativo={input}
                         type="number" 
@@ -48,6 +47,7 @@ function EntryPage() {
                         name="value"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
+                        required
                     />
                     <Input
                         ativo={input}
@@ -56,12 +56,13 @@ function EntryPage() {
                         name="description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        required
                     />
                     <Button 
                         type="submit"
                         ativo={button}
                     >
-                        {button ? "Salvar saída" 
+                        {button ? "Salvar movimentação" 
                         : 
                         <TailSpin 
                             color="#FFFFFF" 
@@ -86,4 +87,4 @@ function EntryPage() {
     )
 }
 
-export default EntryPage;
+export default MovementPage;

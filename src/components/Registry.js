@@ -10,6 +10,7 @@ const Registry = styled.div`
     flex-direction: column;
     gap: 18px;
     position: relative;
+    overflow-y: scroll;
 
     background: #FFFFFF;
     border-radius: 5px;
@@ -22,30 +23,28 @@ const Registry = styled.div`
 
     span {
         margin: auto;
-    }
+    };
 
     .balance {
         font: bold 17px 'Raleway';
         line-height: 20px;
 
         color: #000000;
-    }
+    };
 
     .balanceValue {
         font: normal 17px 'Raleway';
         line-height: 20px;
 
-        color: ${props => props.balance > 0 ? '#03AC00' : '#C70000'};
-    }
+        ${props => props.balance === 0 && 'color: #000000 !important'};
+        color: ${props => props.balance > 0 ? '#03AC00' : '#C70000'}
+    };
 
     .registryFooter {
         display: flex;
         justify-content: space-between;
-        width: 93%;
-
-        position: absolute;
-        bottom: 12px;
-    }
+        width: 100%;
+    };
 `
 
 export default Registry;

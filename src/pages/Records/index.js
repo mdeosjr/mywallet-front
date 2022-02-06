@@ -8,7 +8,7 @@ import exit from '../../assets/images/Vector.svg';
 import entry from '../../assets/images/entry.svg';
 import debt from '../../assets/images/debt.svg';
 
-function RecordsPage() {
+function RecordsPage({setPage}) {
     const { user } = useContext(UserContext);
     const [userData, setUserData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +26,11 @@ function RecordsPage() {
         })
     };
 
+    function toMoveRecords(type) {
+        setPage(type);
+        navigate("/movements-page")
+    }
+
     useEffect(() => {loadRecords()}, []);
 
     if (isLoading) {
@@ -40,8 +45,7 @@ function RecordsPage() {
         if (record.type === 'debt') {
             balanceValue -= parseFloat(record.value)
         }
-    }
-
+    } 
 
     return (
         <Container>
@@ -70,11 +74,11 @@ function RecordsPage() {
             }
             </Registry>
             <div className="movements">
-                <BankMovs onClick={() => navigate("/entry-page")}>
+                <BankMovs onClick={() => toMoveRecords('entry')}>
                     <img src={entry} alt="Entrada"></img>
                     Nova<br/>entrada
                 </BankMovs>
-                <BankMovs onClick={() => navigate("/debt-page")}>
+                <BankMovs onClick={() => toMoveRecords('debt')}>
                     <img src={debt} alt="Saída"></img>
                     Nova<br/>saída
                 </BankMovs>
