@@ -18,7 +18,7 @@ function handleSignUp(body) {
     return promise
 };
 
-function getRecords(token) {
+function getRegistry(token) {
     const headers = createConfig(token);
 
     const promise = axios.get(`${BASE_URL}/records`, headers);
@@ -34,11 +34,20 @@ function postRegistry(body, token) {
     return promise
 };
 
+function deleteRegistry(id, token) {
+    const headers = createConfig(token);
+
+    const promise = axios.delete(`${BASE_URL}/records/${id}`, headers);
+
+    return promise
+};
+
 const api = {
     handleLogin,
     handleSignUp,
-    getRecords,
-    postRegistry
+    getRegistry,
+    postRegistry,
+    deleteRegistry
 };
 
 export default api;

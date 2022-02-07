@@ -19,8 +19,8 @@ function RecordsPage({setPage}) {
         navigate("/");
     };
 
-    function loadRecords() {
-        api.getRecords(user.token).then(response => {
+    function loadRegistry() {
+        api.getRegistry(user.token).then(response => {
             setUserData(response.data);
             setIsLoading(false);
         }).catch(() => {
@@ -34,7 +34,16 @@ function RecordsPage({setPage}) {
         navigate("/movements-page")
     }
 
-    useEffect(() => {loadRecords()}, []);
+    function deleteRegistry(id) {
+        const answer = window.confirm("Deseja deletar este registro?");
+
+        if (answer) {
+            api.deleteRegistry(id, user.token).then(() => loadRegistry())
+        }
+    }
+    
+    // eslint-disable-next-line
+    useEffect(() => {loadRegistry()}, []);
 
     if (isLoading) {
         return <h1>Carregando...</h1>
@@ -43,6 +52,7 @@ function RecordsPage({setPage}) {
     for (const record of userData) {
         if (record.type === 'entry') {
             balanceValue += parseFloat(record.value)
+            console.log(typeof record.value)
         }
 
         if (record.type === 'debt') {
@@ -62,13 +72,17 @@ function RecordsPage({setPage}) {
             :
             <>
             {userData.reverse().map(record => 
-                    <Record type={record.type}>
+                    <Record key = {record._id} type={record.type}>
                         <div className="notValues">
                             <p className="date">{record.date}</p> 
                             <p className="description">{record.description}</p>
                         </div>
-                        <p className="value">{parseFloat(record.value).toFixed(2)}</p>
-                    </Record>)}
+                        <div className="rightSideValue">
+                            <p className="value">{parseFloat(record.value).toFixed(2)}</p>
+                            <p className="deleteRegistry" onClick={() => deleteRegistry(record._id)}>x</p>
+                        </div>
+                    </Record>)
+            }
                     <div className="registryFooter">
                         <p className="balance">SALDO</p>
                         <p className="balanceValue">{parseFloat(balanceValue).toFixed(2)}</p>

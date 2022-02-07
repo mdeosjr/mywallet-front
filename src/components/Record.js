@@ -32,6 +32,12 @@ const Record = styled.div`
         display: flex;
         gap: 8px;
     }
+
+    .rightSideValue {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 `
 
 export default Record;

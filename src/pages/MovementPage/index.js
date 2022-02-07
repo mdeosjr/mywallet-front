@@ -62,7 +62,7 @@ function MovementPage({page}) {
                         type="submit"
                         ativo={button}
                     >
-                        {button ? "Salvar movimentação" 
+                        {button ? (page === 'entry' ? 'Salvar entrada' : 'Salvar saída') 
                         : 
                         <TailSpin 
                             color="#FFFFFF" 
