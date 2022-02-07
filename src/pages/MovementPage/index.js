@@ -17,7 +17,7 @@ function MovementPage({page}) {
     const { user } = useContext(UserContext);
 
     const registryData = ({
-        value: value,
+        value: parseFloat(value),
         description: description,
         type: page,
         date: dayjs().format('DD/MM')

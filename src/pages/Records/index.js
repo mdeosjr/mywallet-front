@@ -46,17 +46,20 @@ function RecordsPage({setPage}) {
     useEffect(() => {loadRegistry()}, []);
 
     if (isLoading) {
-        return <h1>Carregando...</h1>
+        return (
+            <h1 style={{color: 'white', fontSize: '25px', display: 'flex', justifyContent: 'center', padding: '50%'}}>
+                Carregando...
+            </h1>
+        )
     }
 
     for (const record of userData) {
         if (record.type === 'entry') {
-            balanceValue += parseFloat(record.value)
-            console.log(typeof record.value)
+            balanceValue += record.value
         }
 
         if (record.type === 'debt') {
-            balanceValue -= parseFloat(record.value)
+            balanceValue -= record.value
         }
     } 
 
@@ -78,7 +81,7 @@ function RecordsPage({setPage}) {
                             <p className="description">{record.description}</p>
                         </div>
                         <div className="rightSideValue">
-                            <p className="value">{parseFloat(record.value).toFixed(2)}</p>
+                            <p className="value">{record.value.toFixed(2)}</p>
                             <p className="deleteRegistry" onClick={() => deleteRegistry(record._id)}>x</p>
                         </div>
                     </Record>)
