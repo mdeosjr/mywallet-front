@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://api-projeto-mywallet.herokuapp.com/';
+const BASE_URL = 'https://api-projeto-mywallet.herokuapp.com';
 
 function createConfig(token) {
     return { headers: { Authorization: `Bearer ${token}` } };
